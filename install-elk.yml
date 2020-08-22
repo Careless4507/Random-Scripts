@@ -7,22 +7,22 @@
     # Use apt module
     - name: Install docker.io
       apt:
-        force_apt_get: yes
-        name: #TODO
-        state: #TODO
+        update_cache: yes
+        name: docker.io
+        state: present
 
       # Use apt module
-    - name: Install python3-pip
+    - name: Install pip3
       apt:
         force_apt_get: yes
-        name: #TODO
-        state: #TODO
+        name: python3-pip
+        state: present
 
-      # Use pip module (It will default to pip3)
-    - name: Install Docker module
+      # Use pip module
+    - name: Install Docker python module
       pip:
-        name: #TODO
-        state: #TODO
+        name: docker
+        state: present
 
       # Use command module
     - name: Increase virtual memory
@@ -31,10 +31,10 @@
       # Use sysctl module
     - name: Use more memory
       sysctl:
-        name: #TODO
-        value: #TODO
-        state: #TODO
-        reload: #TODO
+        name: vm.max_map_count
+        value: "262144"
+        state: present
+        reload: yes
 
       # Use docker_container module
     - name: download and launch a docker elk container
@@ -43,8 +43,7 @@
         image: sebp/elk:761
         state: started
         restart_policy: always
-        # Please list the ports that ELK runs on
         published_ports:
-          -  #TODO
-          -  #TODO
-          -  #TODO
+          - 5601:5601
+          - 9200:9200
+          - 5044:5044
