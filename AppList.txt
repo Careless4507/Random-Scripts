@@ -1,0 +1,6 @@
+googlechrome
+vscode
+vlc
+tailscale
+bitwarden
+bitwarden-edge
