@@ -1,5 +1,5 @@
 # Define the GitHub repository containing the list of applications to install
-$githubRepo = "https://raw.githubusercontent.com/user/repo/master/applications.txt"
+$githubRepo = "https://raw.githubusercontent.com/ZmanJL/Random-Scripts/master/AppList.txt"
 
 # Retrieve the list of applications from the GitHub repository
 $applications = Invoke-WebRequest -Uri $githubRepo -UseBasicParsing | Select-Object -ExpandProperty Content
