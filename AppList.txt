@@ -4,3 +4,17 @@ vlc
 tailscale
 bitwarden
 bitwarden-edge
+cider
+googledrive
+7zip
+steam
+discord
+signal
+greenshot
+python
+qbittorrent
+vmrc
+imageglass
+sidequest
+cemu
+lghub
