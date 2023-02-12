@@ -18,3 +18,5 @@ imageglass
 sidequest
 cemu
 lghub
+winscp
+putty
