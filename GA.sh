@@ -13,18 +13,17 @@ sleep 1
 wget https://download.virtualbox.org/virtualbox/$LATEST_VERSION/VBoxGuestAdditions_$LATEST_VERSION.iso
 echo -e '\e[96mDownload Complete!\e[0m'
 sleep 1
-echo -e '\e[96mMounting the ISO\e[0m'
+echo -e '\e[96mExtracting ISO contents...\e[0m'
 sleep 1
 mkdir "$HOME/vbox" &> /dev/null
-mount "./VBoxGuestAdditions_$LATEST_VERSION.iso" "$HOME/vbox" -o loop &> /dev/null
+isoinfo -i "VBoxGuestAdditions_$LATEST_VERSION.iso" -x "/VBoxLinuxAdditions.run" -o "$HOME/vbox/VBoxLinuxAdditions.run"
 if [ $? -ne 0 ]; then
-  echo -e '\e[91mFailed to mount ISO\e[0m'
+  echo -e '\e[91mFailed to extract ISO contents\e[0m'
   exit 1
 else
-  echo -e '\e[96mISO Mounted! Cd to '$HOME/vbox' and run the install script!\e[0m'
+  echo -e '\e[96mISO contents extracted! Run the install script located at '$HOME/vbox/VBoxLinuxAdditions.run'\e[0m'
   read -p "Do you want to run the install script now? (y/n): " run_install
   if [ "$run_install" == "y" ]; then
-    cd "$HOME/vbox"
-    sudo bash ./VBoxLinuxAdditions.run
+    sudo bash "$HOME/vbox/VBoxLinuxAdditions.run"
   fi
 fi
