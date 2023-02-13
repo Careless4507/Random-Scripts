@@ -16,8 +16,7 @@ else
 fi
 
 # Download the latest version of the additions ISO
-wget https://download.virtualbox.org/virtualbox/LATEST.TXT -O latest_version.txt
-latest_version=$(cat latest_version.txt)
+latest_version=$(wget -qO- https://download.virtualbox.org/virtualbox/LATEST.TXT)
 wget https://download.virtualbox.org/virtualbox/${latest_version}/VBoxGuestAdditions_${latest_version}.iso
 
 # Mount the virtualbox additions iso
