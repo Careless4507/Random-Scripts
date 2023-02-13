@@ -11,10 +11,6 @@ if (!(Get-Command choco -errorAction SilentlyContinue)) {
 
 # Loop through the list of applications and install each one
 foreach ($application in $applications) {
-    # Remove any illegal characters and whitespace from the application name
-    $sanitizedApplication = [System.IO.Path]::GetInvalidFileNameChars() | ForEach-Object {$application = $application.Replace($_, '')}
-    $sanitizedApplication = $sanitizedApplication.Trim()
-
     # Install the application using Chocolatey
     choco install $sanitizedApplication -y
 }
