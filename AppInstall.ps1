@@ -1,16 +1,17 @@
-# Define the GitHub repository containing the list of applications to install
-$githubRepo = "https://raw.githubusercontent.com/ZmanJL/Random-Scripts/master/AppList.txt"
+# Define the GitHub repository URL
+$repoUrl = "https://github.com/<username>/<repo-name>/raw/<branch-name>/<file-name>.txt"
 
-# Retrieve the list of applications from the GitHub repository
-$applications = Invoke-WebRequest -Uri $githubRepo -UseBasicParsing | Select-Object -ExpandProperty Content
+# Download the list of applications from the GitHub repository
+$appList = Invoke-WebRequest -Uri $repoUrl -UseBasicParsing
 
-# Check if Chocolatey is installed, and install it if not
-if (!(Get-Command choco -errorAction SilentlyContinue)) {
-    Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-}
+# Split the list of applications into an array
+$apps = $appList.Content.Split("`n")
 
-# Loop through the list of applications and install each one
-foreach ($application in $applications) {
+# Loop through the array of applications
+foreach ($app in $apps) {
+  # Check if the application is not empty
+  if ($app -ne "") {
     # Install the application using Chocolatey
-    choco install $sanitizedApplication -y
+    choco install $app -y
+  }
 }
