@@ -1,5 +1,5 @@
 # Define the GitHub repository URL
-$repoUrl = "https://github.com/<username>/<repo-name>/raw/<branch-name>/<file-name>.txt"
+$repoUrl = "https://raw.githubusercontent.com/ZmanJL/Random-Scripts/master/AppList.txt"
 
 # Download the list of applications from the GitHub repository
 $appList = Invoke-WebRequest -Uri $repoUrl -UseBasicParsing
